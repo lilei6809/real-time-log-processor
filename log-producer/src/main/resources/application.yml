@@ -1,0 +1,36 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS:172.20.10.2:9092,172.20.10.2:9094,172.20.10.2:9096}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+      acks: 1
+      retries: 3
+      batch-size: 16384
+      buffer-memory: 33554432
+      compression-type: ${KAFKA_COMPRESSION:snappy}  # 压缩方式
+      linger-ms: ${KAFKA_LINGER_MS:10}  # 等待更多消息组成批次的时间
+
+log:
+  file:
+    path: ${LOG_FILE_PATH:F:/logs/access.log}
+  kafka:
+    topic: ${KAFKA_TOPIC:raw-access-logs}
+  reader:
+    interval: ${LOG_READER_INTERVAL:1000}
+
+logging:
+  level:
+    com.lanlan.mock: ${LOG_LEVEL:DEBUG}     # 通过环境变量控制
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"    # 控制台日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"       # 文件日志格式
+  file:
+    name: ${LOG_FILE_PATH:logs/producer.log}  # 日志文件路径
+
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOG_FILE_MAX_SIZE:10MB}
+      max-history: ${LOG_FILE_MAX_HISTORY:7}

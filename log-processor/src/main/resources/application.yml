@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: log-processor
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS:172.20.10.2:9092,172.20.10.2:9094,172.20.10.2:9096}
+    streams:
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+        spring.json.trusted.packages: "com.lanlan.mock.common.model"
+        default.deserialization.exception.handler: org.apache.kafka.streams.errors.LogAndContinueExceptionHandler
+  data:
+    redis:
+      host: ${REDIS_HOST:172.20.10.2}
+      port: ${REDIS_PORT:6379}
+      database: ${REDIS_DB:0}
+      timeout: 10000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
+logging:
+  level:
+    com.lanlan.mock: DEBUG
