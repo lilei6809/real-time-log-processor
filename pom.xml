@@ -16,6 +16,7 @@
         <module>log-consumer</module>
         <module>log-analytics</module>
         <module>log-alert</module>
+        <module>log-config</module>
     </modules>
 
     <properties>

@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: log-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://E:/desktop/cs/log-config-repo # 修改为您的本地仓库路径
+          search-paths: config
+          default-label: master

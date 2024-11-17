@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: log-alert
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+  # 添加 H2 数据库配置
+  datasource:
+    url: jdbc:h2:mem:alertdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  # JPA 配置
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  # 启用 H2 控制台
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# 开启所有actuator端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

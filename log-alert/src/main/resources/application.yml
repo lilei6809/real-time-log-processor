@@ -1,0 +1,21 @@
+
+mailjet:
+  api-key-public: ${MJ_APIKEY_PUBLIC:default-public-key}
+  api-key-private: ${MJ_APIKEY_PRIVATE:default-private-key}
+  sender-email: ${ALERT_SENDER_EMAIL:default@example.com}
+  sender-name: "系统告警"
+  recipients: ${ALERT_RECEIVERS:admin@example.com}
+
+alert:
+  rules:
+    error:
+      - metric: "404"
+        operator: ">"
+        threshold: 100
+        timeWindow: "1h"
+        level: "WARNING"
+      - metric: "5xx"
+        operator: ">"
+        threshold: 50
+        timeWindow: "1h"
+        level: "ERROR"
