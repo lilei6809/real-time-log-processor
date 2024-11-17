@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.logprocess</groupId>
-    <artifactId>log-process-parent</artifactId>
+    <groupId>com.lanlan.mock</groupId>
+    <artifactId>real-time-log-processor</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -15,6 +15,7 @@
         <module>log-processor</module>
         <module>log-consumer</module>
         <module>log-analytics</module>
+        <module>log-alert</module>
     </modules>
 
     <properties>
@@ -45,6 +46,7 @@
         <!-- 测试依赖版本 -->
         <junit.version>5.10.1</junit.version>
         <mockito.version>5.10.0</mockito.version>
+
     </properties>
 
     <dependencyManagement>
@@ -129,6 +131,29 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Mockito -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Mockito JUnit 5 Extension -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
